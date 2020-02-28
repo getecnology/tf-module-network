@@ -33,7 +33,7 @@ terraform 0.12
 ```hcl
 module "vpc" {
   source = "github.com/leandromoreirati/tf-module-network/modules/vpc"
-  version = "~> 1.0.0"
+  version = "~> 4.0.0"
 
   name                 = "{var.my_team}-{var.product}-{var.environment}"
   cidr_block           = var.cidr_block        
@@ -53,7 +53,7 @@ module "vpc" {
 ```hcl
 module "private_subnet" {
   source = "github.com/leandromoreirati/tf-module-network/modules/subnet"
-  version = "~> 1.0.0"
+  version = "~> 4.0.0"
 
   name                     = "{var.my_team}-{var.product}-{var.environment}"
 
@@ -74,7 +74,7 @@ module "private_subnet" {
 ```hcl
 module "route_table" {
   source = "github.com/leandromoreirati/tf-module-network/modules/route-table"
-  version = "~> 1.0.0"
+  version = "~> 4.0.0"
   
   az_count = var.az_count
   vpc_id   = module.vpc.vpc_id
@@ -103,7 +103,7 @@ module "route_table" {
 ```hcl
 module "elastic_ip" {
   source = "github.com/leandromoreirati/tf-module-network/modules/elastic-ip"
-  version = "~> 1.0.0"
+  version = "~> 4.0.0"
 
   subnet_count = length(data.aws_subnet_ids.private.ids)
 
@@ -118,7 +118,7 @@ module "elastic_ip" {
 ```hcl
 module "nat_gateway" {
   source = "github.com/leandromoreirati/tf-module-network/modules/nat-gateway"
-  version = "~> 1.0.0"
+  version = "~> 4.0.0"
 
   subnet_count = length(data.aws_subnet_ids.private.ids)
 
@@ -137,7 +137,7 @@ module "nat_gateway" {
 ```hcl
 module "nat_gateway" {
   source = "github.com/leandromoreirati/tf-module-network/modules/nat-gateway"
-  version = "~> 1.0.0"
+  version = "~> 4.0.0"
 
   subnet_count = length(data.aws_subnet_ids.private.ids)
   allocation_id = ["eipalloc-0f44c3d48e39f48ab",
@@ -160,7 +160,7 @@ module "nat_gateway" {
 ```hcl
 module "internet_gateway" {
   source = "github.com/leandromoreirati/tf-module-network/modules/internet-gateway"
-  version = "~> 1.0.0"
+  version = "~> 4.0.0"
 
   vpc_id = module.vpc.vpc_id
 
@@ -176,7 +176,7 @@ module "internet_gateway" {
 ```hcl
 module "security_group" {
   source = "github.com/leandromoreirati/tf-module-network/modules/security-group"
-  version = "~> 1.0.0"
+  version = "~> 4.0.0"
 
   name = "${var.my_team}-${var.product}-${var.environment}"
 
